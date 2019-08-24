@@ -62,7 +62,7 @@ module.exports = {
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
     rinkeby: {
-      provider: () => new HDWalletProvider(mnemonic, `rinkeby.infura.io/v3/c45a171d2044435b89854c364357a13f`),
+      provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/c45a171d2044435b89854c364357a13f`),
       network_id: 2,       // Ropsten's id
       gas: 5500000,        // Ropsten has a lower block limit than mainnet
       confirmations: 2,    // # of confs to wait between deployments. (default: 0)
@@ -80,7 +80,7 @@ module.exports = {
      },
 
     gorli: {
-      provider: () => new HDWalletProvider(mnemonic, `goerli.infura.io/v3/c45a171d2044435b89854c364357a13f`),
+      provider: () => new HDWalletProvider(mnemonic, `https://goerli.infura.io/v3/c45a171d2044435b89854c364357a13f`),
       network_id: 4,       // Ropsten's id
       gas: 5500000,        // Ropsten has a lower block limit than mainnet
       confirmations: 2,    // # of confs to wait between deployments. (default: 0)

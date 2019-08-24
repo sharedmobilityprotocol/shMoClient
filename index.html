@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Vehicle</title>
+    <meta property="og:title" content="Vehicle">
+    <meta property="og:site_name" content="Vehicle">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <script src="web3.min.js"></script>
+    <script language="javascript" type="text/javascript" src="vehicle_abi.js"></script>
+    <script async src="https://checkout.stripe.com/checkout.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script type="module">
+        import "./main.js"
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>Vehicle</h1>
+    <img id="loader" class="hide" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
+    <div id="web3Status">
+        Du skal åbne denne side med en browser der understøtter Web3 og aktivere din wallet i browseren. Derefter skal du genindlæse siden.
+    </div>
+    <h4 id="userBalance"></h4>
+    <span>Køb vores lokale valuta Vehicle her, der veksles 1:1 med Dkk:</span>
+    <br><br>
+    <select class="buy-amount-dkk" type="number" id="recAmount">
+        <option type="number" value="0">Vælg beløb</option>
+        <option type="number" value="5000">50 Vehicle</option>
+        <option type="number" value="10000">100 Vehicle</option>
+        <option type="number" value="15000">150 Vehicle</option>
+        <option type="number" value="20000">200 Vehicle</option>
+        <option type="number" value="25000">250 Vehicle</option>
+    </select>
+    <button class="token-button" id="depositButton">Gå til betaling</button>
+    <br><br>
+    <h4>Bilopladning</h4>
+    <span>Bilopladningen startes ved at overføre 50 Vehicle til laderen. Efter endt opladning returneres det resterende beløb inden for få minutter.</span>
+    <br><br>
+    <button id="button">Overfør 50 Vehicle til lader</button>
+
+    <div id="transactionStatus">
+        <span id="insTrans"></span>
+    </div>
+    <input id="userAccount" class="hide"></input>
+</div>
+
+<script>
+    //Detecting if web3 is enabled
+    if (typeof web3 !== 'undefined') {
+        web3 = new Web3(web3.currentProvider);
+    } else {
+        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    }
+
+    web3.eth.defaultAccount = web3.eth.accounts[0];
+
+    var VehicleContract = web3.eth.contract(VehicleABI);
+    var Vehicle = VehicleContract.at('0xca1fd9dF55f4c8F1f2167406D462CdeA607b8b5F'); //Vehicle contract
+    //var Vehicle = VehicleContract.at('0xea75658e5ccc1fb939335a86d6eba759cfd8ec13'); Vehicle token
+    var VehicleCharger = '0xca1fd9dF55f4c8F1f2167406D462CdeA607b8b5F'; //Vehicle wallet
+    //Test token address: 0xd304B8791080cb17CdBF725534522663f6da2dD2
+    var UserBalance = 0;
+
+    var TransferEventTo = Vehicle.Transfer({to: web3.eth.accounts[0]},'latest');
+    TransferEventTo.watch(function (err, result) {
+        if (!err) {
+            if (result.blockHash != $("#instrans").html()) {
+                $("#loader").hide();
+                $("#transactionStatus").show();
+            }
+
+            $("#insTrans").html('Transaktions id: ' +result.blockHash);
+            Vehicle.balanceOf(web3.eth.accounts[0], (err, res) => {
+                if (res) {
+                    UserBalance = Number(res.c/100).toFixed(2);
+                    $("#userBalance").html('Du har : ' + UserBalance + ' Vehicle');
+                }
+            });
+        } else {
+            $("#loader").hide();
+        }
+    });
+    var TransferEventFrom = Vehicle.Transfer({from: web3.eth.accounts[0]},'latest');
+    TransferEventFrom.watch(function (err, result) {
+        if (!err) {
+            if (result.blockHash != $("#instrans").html()) {
+                $("#loader").hide();
+                $("#transactionStatus").show();
+            }
+            $("#insTrans").html('Transaktions id: ' +result.blockHash);
+            Vehicle.balanceOf(web3.eth.accounts[0], (err, res) => {
+                if (res) {
+                    UserBalance = Number(res.c/100).toFixed(2);
+                    $("#userBalance").html('Du har : ' + UserBalance + ' Vehicle');
+                }
+            });
+        } else {
+            $("#loader").hide();
+        }
+    });
+
+    $("#button").click(function() {
+        if (UserBalance >= 50) {
+            $("#loader").show();
+            Vehicle.transfer(VehicleCharger, 5000, (err, res) => {
+                if (err)
+                    $("#loader").hide();
+            });
+        }
+        else alert ("Du skal have mindst 50 Vehicle før du kan lade");
+    });
+
+    Vehicle.balanceOf(web3.eth.accounts[0], (err, res) => {
+        if (res) {
+            UserBalance = Number(res.c/100).toFixed(2);
+            $("#userBalance").html('Du har : ' + UserBalance + ' Vehicle');
+        }
+    });
+
+    if (web3.eth.defaultAccount.length >= 40) {
+        $("#web3Status").hide();
+        document.getElementById("userAccount").value=web3.eth.defaultAccount;
+    } else {
+        $("#web3Status").show();
+    }
+
+</script>
+
+</body>
+</html>

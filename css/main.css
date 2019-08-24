@@ -1,0 +1,20 @@
+#loader {
+    width: 100px;
+}
+
+.hide {
+    display:none;
+}
+
+
+#web3Status {
+    background-color: orange;
+    padding:2em;
+}
+
+#transactionStatus {
+    display:none;
+    background-color: yellowgreen;
+    padding:2em;
+}
+
