@@ -10,7 +10,6 @@ contract Vehicle {
 
     // unix time stamp when it the ride started
     uint started;
-
     bool locked;
 
     // cost in Token / minute
@@ -22,7 +21,7 @@ contract Vehicle {
     constructor(address _owner, address _scooterClient, address _tokenAddress) public {
         owner = _owner;
         scooterClient = _scooterClient;
-        cost = 10;
+        cost = 1000;
         token = StandardToken(_tokenAddress);
     }
 
