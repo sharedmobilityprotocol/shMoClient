@@ -13,6 +13,7 @@
     <link rel="icon" type="image/png" href="images/favicon.png">
     <script src="web3.min.js"></script>
     <script language="javascript" type="text/javascript" src="token_abi.js"></script>
+    <script language="javascript" type="text/javascript" src="vehicle_abi.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     </script>
 </head>
@@ -51,6 +52,10 @@
 
     var TokenContract = web3.eth.contract(TokenABI);
     var Token = TokenContract.at('0xd304B8791080cb17CdBF725534522663f6da2dD2'); //Token contract
+    
+    var VehicleContract = web3.eth.contract(VehicleABI);
+    var Vehicle = VehicleContract.at('0x2f4222e53D48eE020970D4a1B50BA5362972dad2'); //Vehicle contract
+
     var VehicleAddress = '0x2CeE272BB35B534251A52f29d78c7dB314489F6E'; //Vehicle wallet
     
     var UserBalance = 0;
@@ -103,6 +108,18 @@
         }
         else alert ("You need at least 10 Dai to start a booking");
     });
+
+    $("#button-end-rental").click(function() {
+        //if ()//############Insert test, to verify that scooter is open
+            $("#loader").show();
+            Vehicle.finishRide((err, res) => {
+                if (err)
+                    $("#loader").hide();
+            });
+        //}
+        //else alert ("You are not renting the vehicle");
+    });
+
 
     Token.balanceOf(web3.eth.accounts[0], (err, res) => {
         if (res) {
