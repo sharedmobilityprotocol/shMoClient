@@ -12,10 +12,11 @@ module.exports = async function (deployer) {
 
   let initialAmount = 1000000000
   let initialUser = accounts[0]
-  let scooterClientAddress = zeroAddress // TODO
+  let scooterClientAddress = '0x2CeE272BB35B534251A52f29d78c7dB314489F6E'
   let vehicleOwner = accounts[0]
 
   console.log('funding ', initialUser, ' with ', initialAmount, ' Tokens...')
+  console.log('setting scooter address to ', scooterClientAddress)
   await deployer.deploy(TestToken, initialAmount, initialUser);
 
   // deploy a vehicleContract
