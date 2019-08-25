@@ -18,18 +18,65 @@
     </script>
 </head>
 <body>
-<div class="container">
-    <h1>Rent a Shared Vehicle</h1>
+  <div class="header" id="myHeader">
+    <div class="funds">
+    <img src="https://cdn.worldvectorlogo.com/logos/dai-2.svg" style="width: 30px; display: inline-flex;" />
+    <p style="display: inline-flex;">UserBalance  DAI</p>
+  </div>
+</div>
+<div class="container" style="text-align: center;">
+  <h1>Common Ride</h1>
+
+
+  <button class="collapsible" style="padding-top: 0px;">How It Works</button>
+  <div class="content">
+    <div class="tutorial">
+    <img src="/images/Step1.png" />
+    <p>1. Send deposit to start ride</p>
+  <img src="/images/Step2.png" />
+    <p>2. Pay per minute of riding</p>
+  <img src="/images/Step3.png" />
+    <p>3. After ride, remaining deposit returned</p>
+        </div>
+  </div>
     <img id="loader" class="hide" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
     <div id="web3Status">
         Du skal åbne denne side med en browser der understøtter Web3 og aktivere din wallet i browseren. Derefter skal du genindlæse siden.
     </div>
     <h4 id="userBalance"></h4>
     <br>
-    <h4>Booking</h4>
-    <span>Booking is done by transfering 10 DAI to the Vehicle, remaining funds will be retuned when  the trip is completed.</span>
+    <div class="bike-selection" id="et">
+    <img src="/images/map.png" style="width: 100%;" usemap="#planetmap"/>
+    <map name="planetmap">
+      <area shape="circle" coords="45, 37, 20" alt="Sun" href="#etBike">
+      <area shape="circle" coords="276,68,20" alt="Mercury" href="#blue">
+      <area shape="circle" coords="115,159,20" alt="Venus" href="#peewee">
+    </map>
+    <h4 style="margin-bottom: 1rem;" id="etBike">Selected Bike</h4>
+    <div class="active-selection">
+    <p class="vehicle_name">E.T. Phone Home</p>
+    <div class="star-row">
+      <span style="color: gold;">&#9733; &#9733; &#9733; &#9733; <span style="color: lightgrey;">&#9733;</span></span>
+    </div>
+    <img style="margin: auto; display: block; width: 100%;" src="/images/etbike.jpeg" />
+    </div>
+
+    <div class="cost-row">
+      <div class="deposit-amount" style="display: inline-block;">
+        <p style="font-weight: bold;">Deposit</p>
+        <img src="/images/dai.png" />
+        <span style="font-size: 16px">10 DAI</span><span style="font-size: 12px; margin-left: 5px;">deposit</span>
+      </div>
+      <div class="ride-cost" style="margin-left: 15%; display: inline-block;">
+        <p style="font-weight: bold;">Ride Cost</p>
+        <img src="/images/dai.png" />
+        <span style="font-size: 16px">0.10 DAI</span><span style="font-size: 12px;">/min</span>
+      </div>
+    </div>
+
+    <!-- <span>Booking is done by transfering 10 DAI to the Vehicle, remaining funds will be retuned when  the trip is completed.</span> -->
     <br><br>
-    <button id="button">Transfer 10 DAI to the vehicle</button>
+    <button id="button" class="hvr-forward" style="uppercase: none; font-size: 14px; color: white; background: #4ADD61;">Send Deposit to Start Ride</button>
 
     <br><br>
     <button id="button-end-rental">End Rental</button>
@@ -38,6 +85,65 @@
         <span id="insTrans"></span>
     </div>
     <input id="userAccount" class="hide"></input>
+</div>
+
+<div class="bike-selection" id="blue">
+<img src="/images/map.png" style="width: 100%;" usemap="#planetmap"/>
+<map name="planetmap">
+  <area shape="circle" coords="45, 37, 20" alt="Sun" href="sun.htm">
+  <area shape="circle" coords="276,68,20" alt="Mercury" href="mercur.htm">
+  <area shape="circle" coords="115,159,20" alt="Venus" href="venus.htm">
+</map>
+<h4 style="margin-bottom: 1rem;">Selected Bike</h4>
+<div class="active-selection">
+<p class="vehicle_name">Blue</p>
+<div class="star-row">
+  <span style="color: gold;">&#9733; &#9733; &#9733; &#9733; <span style="color: lightgrey;">&#9733;</span></span>
+</div>
+<img style="margin: auto; display: block; width: 100%;" src="/images/Blue-Bike.jpg" />
+</div>
+
+<span>Booking is done by transfering 10 DAI to the Vehicle, remaining funds will be retuned when  the trip is completed.</span>
+<br><br>
+<button id="button">Transfer 10 DAI to the vehicle</button>
+
+<br><br>
+<button id="button-end-rental">End Rental</button>
+
+<div id="transactionStatus">
+    <span id="insTrans"></span>
+</div>
+<input id="userAccount" class="hide"></input>
+</div>
+
+<div class="bike-selection" id="peewee">
+<img src="/images/map.png" style="width: 100%;" usemap="#planetmap"/>
+<map name="planetmap">
+  <area shape="circle" coords="45, 37, 20" alt="Sun" href="sun.htm">
+  <area shape="circle" coords="276,68,20" alt="Mercury" href="mercur.htm">
+  <area shape="circle" coords="115,159,20" alt="Venus" href="venus.htm">
+</map>
+<h4 style="margin-bottom: 1rem;">Selected Bike</h4>
+<div class="active-selection">
+<p class="vehicle_name">Pee Wee</p>
+<div class="star-row">
+  <span style="color: gold;">&#9733; &#9733; &#9733; &#9733; <span style="color: lightgrey;">&#9733;</span></span>
+</div>
+<img style="margin: auto; display: block; width: 100%;" src="/images/peewee.jpg" />
+</div>
+
+<span>Booking is done by transfering 10 DAI to the Vehicle, remaining funds will be retuned when  the trip is completed.</span>
+<br><br>
+<button id="button">Transfer 10 DAI to the vehicle</button>
+
+<br><br>
+<button id="button-end-rental">End Rental</button>
+
+<div id="transactionStatus">
+    <span id="insTrans"></span>
+</div>
+<input id="userAccount" class="hide"></input>
+</div>
 </div>
 
 <script>
@@ -52,12 +158,12 @@
 
     var TokenContract = web3.eth.contract(TokenABI);
     var Token = TokenContract.at('0xd304B8791080cb17CdBF725534522663f6da2dD2'); //Token contract
-    
+
     var VehicleContract = web3.eth.contract(VehicleABI);
     var Vehicle = VehicleContract.at('0x2f4222e53D48eE020970D4a1B50BA5362972dad2'); //Vehicle contract
 
     var VehicleAddress = '0x2CeE272BB35B534251A52f29d78c7dB314489F6E'; //Vehicle wallet
-    
+
     var UserBalance = 0;
 
     var TransferEventTo = Token.Transfer({to: web3.eth.accounts[0]},'latest');
@@ -135,6 +241,42 @@
         $("#web3Status").show();
     }
 
+</script>
+
+<script>// When the user scrolls the page, execute myFunction
+window.onscroll = function() {myFunction()};
+
+// Get the header
+var header = document.getElementById("myHeader");
+
+// Get the offset position of the navbar
+var sticky = header.offsetTop;
+
+// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+</script>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+coll[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var content = this.nextElementSibling;
+  if (content.style.display === "block") {
+    content.style.display = "none";
+  } else {
+    content.style.display = "block";
+  }
+});
+}
 </script>
 
 </body>
