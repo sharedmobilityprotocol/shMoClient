@@ -89,7 +89,7 @@ module.exports = {
     },
 
     skale: {
-      provider: () => new HDWalletProvider(mnemonic, `https://68.183.165.161:10205`),
+      provider: () => new HDWalletProvider(mnemonic, `http://68.183.165.161:10200`),
       network_id: 5,       // ???'s id
       gas: 0,              // 
       //confirmations: 2,    // # of confs to wait between deployments. (default: 0)
