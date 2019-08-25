@@ -6,7 +6,7 @@
     <meta property="og:site_name" content="Rent Vehicle">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:400,400i|PT+Serif:700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/main.css">
@@ -20,8 +20,8 @@
 <body>
   <div class="header" id="myHeader">
     <div class="funds">
-    <img src="https://cdn.worldvectorlogo.com/logos/dai-2.svg" style="width: 30px; display: inline-flex;" />
-    <p style="display: inline-flex;">UserBalance  DAI</p>
+    <!-- <img src="https://cdn.worldvectorlogo.com/logos/dai-2.svg" style="width: 30px; display: inline-flex;" /> -->
+    <h4 id="userBalance"></h4>
   </div>
 </div>
 <div class="container" style="text-align: center;">
@@ -61,21 +61,21 @@
     <img style="margin: auto; display: block; width: 100%;" src="/images/etbike.jpeg" />
     </div>
 
-    <div class="cost-row">
+    <div class="cost-row" style="margin-top: 20px;">
       <div class="deposit-amount" style="display: inline-block;">
         <p style="font-weight: bold;">Deposit</p>
         <img src="/images/dai.png" />
-        <span style="font-size: 16px">10 DAI</span><span style="font-size: 12px; margin-left: 5px;">deposit</span>
+        <span style="font-size: 16px">10 DAI</span><span style="font-size: 12px; margin-left: 5px;"></span>
       </div>
       <div class="ride-cost" style="margin-left: 15%; display: inline-block;">
         <p style="font-weight: bold;">Ride Cost</p>
         <img src="/images/dai.png" />
-        <span style="font-size: 16px">0.10 DAI</span><span style="font-size: 12px;">/min</span>
+        <span style="font-size: 16px; margin-right: 4px;">0.60 DAI</span><span style="font-size: 12px;">/ min</span>
       </div>
     </div>
 
     <!-- <span>Booking is done by transfering 10 DAI to the Vehicle, remaining funds will be retuned when  the trip is completed.</span> -->
-    <br><br>
+<br>
     <button id="button" class="hvr-forward" style="uppercase: none; font-size: 14px; color: white; background: #4ADD61;">Send Deposit to Start Ride</button>
 
     <br><br>
@@ -230,7 +230,7 @@
     Token.balanceOf(web3.eth.accounts[0], (err, res) => {
         if (res) {
             UserBalance = Number(res.c/100).toFixed(2);
-            $("#userBalance").html('Du har : ' + UserBalance + ' DAI');
+            $("#userBalance").html('<img src="https://cdn.worldvectorlogo.com/logos/dai-2.svg" style="width: 30px;" />' + UserBalance + ' DAI');
         }
     });
 

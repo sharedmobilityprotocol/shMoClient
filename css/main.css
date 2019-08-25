@@ -44,6 +44,15 @@ p.vehicle_name {
   border-bottom: solid 1px grey;
 }
 
+.header-rideGUI {
+  padding: 10px 16px;
+  background: white;
+  color: #f1f1f1;
+  z-index: 5;
+  height: 98px;
+  border-bottom: solid 1px grey;
+}
+
 *.funds {
   color: black;
 }
