@@ -25,7 +25,7 @@
   </div>
 </div>
 <div class="container" style="text-align: center;">
-  <h1>Common Ride</h1>
+  <h3 style="">Common Ride</h3>
 
 
   <button class="collapsible" style="padding-top: 0px;">How It Works</button>
@@ -43,22 +43,21 @@
     <div id="web3Status">
         Du skal åbne denne side med en browser der understøtter Web3 og aktivere din wallet i browseren. Derefter skal du genindlæse siden.
     </div>
-    <h4 id="userBalance"></h4>
-    <br>
-    <div class="bike-selection" id="et">
-    <img src="/images/map.png" style="width: 100%;" usemap="#planetmap"/>
+    <p id="userBalance" style="font-size: 16px !important;"></p>
+    <!-- <br> -->
+    <!-- <img src="/images/map.png" style="width: 100%;" usemap="#planetmap"/>
     <map name="planetmap">
       <area shape="circle" coords="45, 37, 20" alt="Sun" href="#etBike">
       <area shape="circle" coords="276,68,20" alt="Mercury" href="#blue">
       <area shape="circle" coords="115,159,20" alt="Venus" href="#peewee">
-    </map>
+    </map> -->
     <h4 style="margin-bottom: 1rem;" id="etBike">Selected Bike</h4>
     <div class="active-selection">
-    <p class="vehicle_name">E.T. Phone Home</p>
+    <p class="vehicle_name">The Pee Wee</p>
     <div class="star-row">
       <span style="color: gold;">&#9733; &#9733; &#9733; &#9733; <span style="color: lightgrey;">&#9733;</span></span>
     </div>
-    <img style="margin: auto; display: block; width: 100%;" src="/images/etbike.jpeg" />
+    <img style="margin: auto; display: block; width: 100%;" src="/images/peewee.jpg" />
     </div>
 
     <div class="cost-row" style="margin-top: 20px;">
@@ -79,71 +78,12 @@
     <button id="button" class="hvr-forward" style="uppercase: none; font-size: 14px; color: white; background: #4ADD61;">Send Deposit to Start Ride</button>
 
     <br><br>
-    <button id="button-end-rental">End Rental</button>
+    <button style="display: none;" id="button-end-rental">End Rental</button>
 
     <div id="transactionStatus">
         <span id="insTrans"></span>
     </div>
     <input id="userAccount" class="hide"></input>
-</div>
-
-<div class="bike-selection" id="blue">
-<img src="/images/map.png" style="width: 100%;" usemap="#planetmap"/>
-<map name="planetmap">
-  <area shape="circle" coords="45, 37, 20" alt="Sun" href="sun.htm">
-  <area shape="circle" coords="276,68,20" alt="Mercury" href="mercur.htm">
-  <area shape="circle" coords="115,159,20" alt="Venus" href="venus.htm">
-</map>
-<h4 style="margin-bottom: 1rem;">Selected Bike</h4>
-<div class="active-selection">
-<p class="vehicle_name">Blue</p>
-<div class="star-row">
-  <span style="color: gold;">&#9733; &#9733; &#9733; &#9733; <span style="color: lightgrey;">&#9733;</span></span>
-</div>
-<img style="margin: auto; display: block; width: 100%;" src="/images/Blue-Bike.jpg" />
-</div>
-
-<span>Booking is done by transfering 10 DAI to the Vehicle, remaining funds will be retuned when  the trip is completed.</span>
-<br><br>
-<button id="button">Transfer 10 DAI to the vehicle</button>
-
-<br><br>
-<button id="button-end-rental">End Rental</button>
-
-<div id="transactionStatus">
-    <span id="insTrans"></span>
-</div>
-<input id="userAccount" class="hide"></input>
-</div>
-
-<div class="bike-selection" id="peewee">
-<img src="/images/map.png" style="width: 100%;" usemap="#planetmap"/>
-<map name="planetmap">
-  <area shape="circle" coords="45, 37, 20" alt="Sun" href="sun.htm">
-  <area shape="circle" coords="276,68,20" alt="Mercury" href="mercur.htm">
-  <area shape="circle" coords="115,159,20" alt="Venus" href="venus.htm">
-</map>
-<h4 style="margin-bottom: 1rem;">Selected Bike</h4>
-<div class="active-selection">
-<p class="vehicle_name">Pee Wee</p>
-<div class="star-row">
-  <span style="color: gold;">&#9733; &#9733; &#9733; &#9733; <span style="color: lightgrey;">&#9733;</span></span>
-</div>
-<img style="margin: auto; display: block; width: 100%;" src="/images/peewee.jpg" />
-</div>
-
-<span>Booking is done by transfering 10 DAI to the Vehicle, remaining funds will be retuned when  the trip is completed.</span>
-<br><br>
-<button id="button">Transfer 10 DAI to the vehicle</button>
-
-<br><br>
-<button id="button-end-rental">End Rental</button>
-
-<div id="transactionStatus">
-    <span id="insTrans"></span>
-</div>
-<input id="userAccount" class="hide"></input>
-</div>
 </div>
 
 <script>
@@ -230,7 +170,7 @@
     Token.balanceOf(web3.eth.accounts[0], (err, res) => {
         if (res) {
             UserBalance = Number(res.c/100).toFixed(2);
-            $("#userBalance").html('<img src="https://cdn.worldvectorlogo.com/logos/dai-2.svg" style="width: 30px;" />' + UserBalance + ' DAI');
+            $("#userBalance").html('<img src="https://cdn.worldvectorlogo.com/logos/dai-2.svg" style="width: 30px;" /> <span style="font-size: 18px;">' + UserBalance + ' DAI </span>');
         }
     });
 
